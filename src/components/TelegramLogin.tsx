@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const BOT_USERNAME = "telex_feed_bot"; // Замените на своего бота после создания в @BotFather и /setdomain
+const BOT_USERNAME = "telex_feed_bot"; // Replace with your bot after creating in @BotFather and /setdomain
 
 export function TelegramLogin() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ export function TelegramLogin() {
     <div
       ref={containerRef}
       className="flex justify-center [&>script]:!block"
-      aria-label="Войти через Telegram"
+      aria-label="Log in with Telegram"
     />
   );
 }

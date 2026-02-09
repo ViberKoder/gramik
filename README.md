@@ -1,30 +1,30 @@
-# Telex — Твиттер + Telegram
+# Telex — Telegram meets X
 
-Сайт объединяет ленту из Telegram-каналов в стиле X (Twitter): авторизация через Telegram, посты в виде рекомендаций, комментарии и лайки.
+Feed from your Telegram channels in a Twitter/X-style layout. Sign in with Telegram, get recommendations, comments and likes. TON & Wallet ready.
 
-## Локальный запуск
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-## Авторизация через Telegram
+## Sign in with Telegram
 
-1. Создайте бота в [@BotFather](https://t.me/BotFather).
-2. Выполните `/setdomain` и укажите домен (для локальной разработки можно использовать демо-вход).
-3. В `src/components/TelegramLogin.tsx` замените `BOT_USERNAME` на имя вашего бота.
+1. Create a bot in [@BotFather](https://t.me/BotFather).
+2. Run `/setdomain` and set your domain (for local dev you can use the demo sign-in).
+3. In `src/components/TelegramLogin.tsx` set `BOT_USERNAME` to your bot’s username.
 
-## Деплой на Vercel
+## Deploy on Vercel
 
-1. Залейте проект в GitHub.
-2. Подключите репозиторий в [Vercel](https://vercel.com).
-3. В BotFather выполните `/setdomain` для домена вида `your-app.vercel.app`.
+1. Push the project to GitHub.
+2. Import the repo in [Vercel](https://vercel.com).
+3. In BotFather run `/setdomain` for your Vercel domain (e.g. `your-app.vercel.app`).
 
-## Стек
+## Stack
 
 - Next.js 14, React 18, TypeScript
-- Tailwind CSS (Inter, синие градиенты в стиле TON/wallet.tg)
-- Telegram Login Widget для входа
+- Tailwind CSS (Inter, light theme, TON blue accent)
+- Telegram Login Widget for auth

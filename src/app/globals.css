@@ -4,10 +4,13 @@
 
 :root {
   --font-inter: "Inter", system-ui, sans-serif;
-  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
-  --color-bg: #0a0f1a;
-  --color-surface: #111827;
-  --color-border: #1f2937;
+  --color-bg: #ffffff;
+  --color-surface: #f7f9f9;
+  --color-border: #eff3f4;
+  --color-text: #0f1419;
+  --color-text-secondary: #536471;
+  --ton-blue: #0088cc;
+  --ton-blue-hover: #006699;
 }
 
 * {
@@ -21,31 +24,31 @@ html {
 body {
   font-family: var(--font-inter);
   background: var(--color-bg);
-  color: #e5e7eb;
+  color: var(--color-text);
   min-height: 100vh;
 }
 
-/* Telegram widget override */
+/* Telegram widget override - light theme */
 .tg-login-button {
   border-radius: 12px !important;
 }
 
-/* Scrollbar */
+/* Scrollbar - light */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #f7f9f9;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #cfd9de;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563eb;
+  background: #0088cc;
 }
