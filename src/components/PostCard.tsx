@@ -16,10 +16,14 @@ export function PostCard({
   post,
   onLike,
   onComment,
+  onBookmark,
+  isBookmarked: isBookmarkedProp,
 }: {
   post: Post;
   onLike: (postId: string) => void;
   onComment: (postId: string, text: string) => void;
+  onBookmark?: (post: Post) => void;
+  isBookmarked?: boolean;
 }) {
   const [showComments, setShowComments] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -93,13 +97,19 @@ export function PostCard({
                 </svg>
               </span>
             </button>
-            <button type="button" className="flex items-center min-w-0 text-x-gray hover:text-ton transition-colors group cursor-pointer">
-              <span className="p-2 rounded-full group-hover:bg-ton-light transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-              </span>
-            </button>
+            {onBookmark && (
+              <button
+                type="button"
+                onClick={() => onBookmark(post)}
+                className={`flex items-center min-w-0 transition-colors group cursor-pointer ${isBookmarkedProp ? "text-ton" : "text-x-gray hover:text-ton"}`}
+              >
+                <span className="p-2 rounded-full group-hover:bg-ton-light transition-colors">
+                  <svg className="w-5 h-5" fill={isBookmarkedProp ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                </span>
+              </button>
+            )}
           </div>
 
           {showComments && (

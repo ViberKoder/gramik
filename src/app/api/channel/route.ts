@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const RSS_BRIDGE_BASE = "https://rss-bridge.privacydev.net";
+const RSS_BRIDGES = [
+  "https://rss-bridge.privacydev.net",
+  "https://rss.0x0c.link",
+];
 
 function parseRssItems(xml: string): { title: string; link: string; description: string; pubDate: string }[] {
   const items: { title: string; link: string; description: string; pubDate: string }[] = [];
@@ -25,15 +28,23 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing username" }, { status: 400 });
   }
 
+  let xml: string | null = null;
+  for (const base of RSS_BRIDGES) {
+    try {
+      const url = `${base}/?action=display&bridge=Telegram&context=Channel&u=${encodeURIComponent(username)}`;
+      const res = await fetch(url, { next: { revalidate: 300 } });
+      if (res.ok) {
+        xml = await res.text();
+        if (xml && xml.includes("<item>")) break;
+      }
+    } catch (_) {}
+  }
   try {
-    const url = `${RSS_BRIDGE_BASE}/?action=display&bridge=Telegram&context=Channel&u=${encodeURIComponent(username)}`;
-    const res = await fetch(url, { next: { revalidate: 300 } });
-    if (!res.ok) throw new Error("RSS fetch failed");
-    const xml = await res.text();
+    if (!xml || !xml.includes("<item>")) throw new Error("RSS fetch failed");
     const items = parseRssItems(xml);
     const channelTitle = username.charAt(0).toUpperCase() + username.slice(1);
     const posts = items.slice(0, 20).map((item, i) => ({
-      id: `rss-${username}-${i}-${Date.now()}`,
+      id: `rss-${username}-${i}`,
       channelId: username,
       channelTitle,
       channelUsername: username,
