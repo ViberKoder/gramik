@@ -40,8 +40,9 @@ export function ChannelList({
       </ul>
       {onAddChannel && (
         <button
+          type="button"
           onClick={onAddChannel}
-          className="w-full p-4 flex items-center justify-center gap-2 text-ton hover:bg-ton-light transition-colors border-t border-x-border font-medium"
+          className="w-full p-4 flex items-center justify-center gap-2 text-ton hover:bg-ton-light transition-colors border-t border-x-border font-medium cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
