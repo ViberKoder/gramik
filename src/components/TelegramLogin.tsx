@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const BOT_USERNAME = "telex_feed_bot"; // Replace with your bot after creating in @BotFather and /setdomain
+const BOT_USERNAME = "gramixxbot";
 
 export function TelegramLogin() {
   const containerRef = useRef<HTMLDivElement>(null);
